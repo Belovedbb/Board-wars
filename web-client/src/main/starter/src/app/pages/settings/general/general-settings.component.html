@@ -1,0 +1,29 @@
+<div class="lists row">
+  <div class="col-md-9 col-lg-3 col-xxxl-3">
+    <nb-card class="list-card" size="giant">
+      <nb-card-header>Module</nb-card-header>
+      <nb-list>
+        <nb-list-item  class="list-cursor"  *ngFor="let module of settingsModules">
+          <button class="list-cursor" type="button" shape="round" fullWidth nbButton hero size="medium" status="primary"
+                  outline (click)="selectModule(module.type)">
+            {{module.name}}
+          </button>
+        </nb-list-item>
+      </nb-list>
+    </nb-card>
+  </div>
+
+  <div class="col-md-12 col-lg-9 col-xxxl-9" *ngIf="currentSettingsModule != null">
+    <div [ngSwitch]="(currentSettingsModule)?.type ">
+      <ng-container *ngSwitchCase="0">
+        <kanban-settings-general></kanban-settings-general>
+      </ng-container>
+      <ng-container *ngSwitchCase="1">
+        <marker-settings-general ></marker-settings-general>
+      </ng-container>
+      <ng-container *ngSwitchCase="2">
+        <scrum-settings-general></scrum-settings-general>
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+
+<form formGroupName="storageControl" (ngSubmit)="onStorageSubmit()">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="header">
+        <div class="name bold">Storage Type</div>
+      </div>
+    </div>
+    <div class="col-sm-9">
+      <nb-select size="medium" [outline]="true" [hero]="true"
+                  class="type-select"
+                 formControlName="storageTypeCtrl"
+                 [ngClass]="{'form-control-danger': form.invalid && (form.dirty || form.touched)}">
+        <nb-option *ngFor="let t of storageTypes" [value]="t.key">
+          {{ t.value }}
+        </nb-option>
+      </nb-select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="header">
+        <div class="name bold">Base Location</div>
+      </div>
+    </div>
+    <div class="col-sm-9">
+      <input type="text" name="location" placeholder="Enter type location with '/' prefix e.g /" class="form-control" formControlName="locationCtrl"
+             [ngClass]="{'form-control-danger': form.invalid && (form.dirty || form.touched)}">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="header">
+        <div class="name bold">Allowed Types</div>
+      </div>
+    </div>
+    <div class="col-sm-9">
+      <input type="text" name="allowedTypes" placeholder="Enter allowed extension type separated by ',' e.g jpg, png"
+             class="form-control" formControlName="allowedTypesCtrl"
+             [ngClass]="{'form-control-danger': form.invalid && (form.dirty || form.touched)}">
+    </div>
+  </div>
+  <div class="row header">
+    <button [disabled]="disableSubmit" [status]="'primary'" nbButton outline>Save Storage</button>
+  </div>
+</form>
+<br/>

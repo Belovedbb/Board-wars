@@ -1,0 +1,35 @@
+<form formGroupName="roleControl" (ngSubmit)="onRoleSubmit()">
+  <div class="row">
+      <div class="header validation-checkbox">
+        <nb-checkbox status="primary" formControlName="activateCtrl"
+                     [ngClass]="{'form-control-danger': form.invalid && (form.dirty || form.touched)}">Enable Custom</nb-checkbox>
+      </div>
+  </div>
+  <div class="row rounded">
+    <h5 class="text-heading text-info">Roles Configuration</h5>
+  </div>
+  <div class="row">
+    <div class="col-sm-11">
+      <ng2-smart-table  [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"></ng2-smart-table>
+    </div>
+    <div class="header col-sm-1">
+      <button type="button" (click)="addTable($event)"  [status]="'primary'" nbButton >Add</button>
+    </div>
+  </div>
+  <br/>
+  <div class="row">
+    <div *ngFor="let validations of validationError">
+      <ul>
+        <li *ngFor="let state of validations">
+          <nb-alert size="tiny" outline="danger">
+            <div class="text-info">The {{ state.keyValue }} {{ state.messageValue }}</div>
+          </nb-alert>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row header">
+    <button [disabled]="disableSubmit" [status]="'primary'" nbButton outline>Save Role</button>
+  </div>
+</form>
+<br/>

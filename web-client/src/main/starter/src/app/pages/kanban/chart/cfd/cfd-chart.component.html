@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-12" style="margin-bottom: 2px">
+    <nb-select  size="tiny" [outline]="true" [selected]="(selectedProject | async)?.code" (selectedChange)="onProjectChange($event)" [hero]="true"
+                fullWidth class="type-select" >
+      <nb-option *ngFor="let project of (projects | async)"  [value]="project.code">
+        {{ project.name}}
+      </nb-option>
+    </nb-select>
+  </div>
+  <div class="col-md-12" style="margin-bottom: 2px">
+    <div class='title'>Tasks</div>
+  </div>
+  <div class="col-md-12" style="margin-bottom: 2px">
+    <div id="parent" #parent></div>
+  </div>
+</div>

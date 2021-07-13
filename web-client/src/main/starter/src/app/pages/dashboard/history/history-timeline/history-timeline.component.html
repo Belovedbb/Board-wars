@@ -1,0 +1,78 @@
+<div class="main-container">
+  <div class="content-container">
+    <div class="content-area">
+
+      <ul class="clr-timeline clr-timeline-vertical" style="width: 400px">
+          <li *ngFor="let datum of data" class="clr-timeline-step">
+            <div class="clr-timeline-step-header">{{getDateFormat(datum.datetime)}}</div>
+            <ng-container [ngSwitch]="datum.type">
+              <ng-container *ngSwitchCase="0">
+                <clr-icon shape="success-standard" aria-label="Created"></clr-icon>
+              </ng-container>
+              <ng-container *ngSwitchCase="1">
+                <clr-icon shape="circle" aria-label="Updated"></clr-icon>
+              </ng-container>
+              <ng-container *ngSwitchCase="2">
+                <clr-icon shape="error-standard" aria-label="Error"></clr-icon>
+              </ng-container>
+              <ng-container *ngSwitchCase="3">
+                <clr-icon shape="spinner" aria-label="Log"></clr-icon>
+              </ng-container>
+              <ng-container *ngSwitchCase="undefined">
+                <clr-icon shape="error-standard" aria-label="Error"></clr-icon>
+              </ng-container>
+            </ng-container>
+            <div class="clr-timeline-step-body">
+              <span class="clr-timeline-step-title">{{datum.header}}</span>
+              <span class="clr-timeline-step-description">
+                <div class="row"  *ngFor="let body of datum.body">
+                  {{body.content}}
+                </div>
+              </span>
+            </div>
+          </li>
+<!--        <li class="clr-timeline-step">-->
+<!--          <div class="clr-timeline-step-header">June 18 2020 11:59 am</div>-->
+<!--          <clr-icon shape="dot-circle" aria-current="true" aria-label="Current"></clr-icon>-->
+<!--          <div class="clr-timeline-step-body">-->
+<!--            <span class="clr-timeline-step-title">Add KMS</span>-->
+<!--            <span class="clr-timeline-step-description">-->
+<!--                Root CA certificate requested. Upload it to the KMS to complete the connection.-->
+<!--              &lt;!&ndash; <img src="assets/placeholder_350x150.png" alt="Example of an Image in a Card" /> &ndash;&gt;-->
+<!--            </span>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--        <li class="clr-timeline-step">-->
+<!--          <span class="clr-timeline-step-header">11:59 am</span>-->
+<!--          <clr-icon shape="spinner" aria-label="In progress"></clr-icon>-->
+<!--          <div class="clr-timeline-step-body">-->
+<!--            <span class="clr-timeline-step-title">Make vCenter trust KMS</span>-->
+<!--            <span class="clr-timeline-step-description">-->
+<!--              Root CA certificate requested. Upload it to the KMS to complete the connection. Third sentence is very long-->
+<!--              and very long.-->
+<!--            </span>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--        <li class="clr-timeline-step">-->
+<!--          <div class="clr-timeline-step-header">11:59 am</div>-->
+<!--          <clr-icon shape="success-standard" aria-label="Completed"></clr-icon>-->
+<!--          <div class="clr-timeline-step-body">-->
+<!--            <span class="clr-timeline-step-title">Make KMS trust vCenter</span>-->
+<!--            <span class="clr-timeline-step-description">Upload it to the KMS to complete the connection. Third-->
+<!--            sentence.-->
+<!--            <button class="btn btn-sm">Refresh</button>-->
+<!--            </span>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--        <li class="clr-timeline-step">-->
+<!--          <div class="clr-timeline-step-header"></div>-->
+<!--          <clr-icon shape="error-standard" aria-label="Error"></clr-icon>-->
+<!--          <div class="clr-timeline-step-body">-->
+<!--            <span class="clr-timeline-step-title">Connected</span>-->
+<!--            <span class="clr-timeline-step-description">No. It's not connected.</span>-->
+<!--          </div>-->
+<!--        </li>-->
+      </ul>
+    </div>
+  </div>
+</div>

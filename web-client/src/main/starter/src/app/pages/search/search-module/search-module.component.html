@@ -1,0 +1,57 @@
+<div class="lists row">
+  <div class="col-md-9 col-lg-6 col-xxxl-6">
+    <nb-card class="list-card" size="giant">
+      <nb-card-header>Search Module</nb-card-header>
+      <nb-list>
+        <nb-list-item  class="list-cursor"  *ngFor="let module of searchModules">
+          <button class="list-cursor" type="button" disabled shape="round" fullWidth nbButton hero size="medium" status="primary"
+                  outline (click)="selectModule(module.type)">
+            {{module.name}}
+          </button>
+          <nb-search type="column-curtain" [tag]="module.name"></nb-search>
+        </nb-list-item>
+      </nb-list>
+    </nb-card>
+  </div>
+
+  <div class="col-md-12 col-lg-9 col-xxxl-9" *ngIf="currentSearchModule != null">
+    <div [ngSwitch]="(currentSearchModule)?.type ">
+      <ng-container *ngSwitchCase="0">
+        <nb-card>
+          <nb-card-header>Kanban Search</nb-card-header>
+          <nb-card-body>
+            <div class="form-group row">
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </ng-container>
+      <ng-container *ngSwitchCase="1">
+        <nb-card>
+          <nb-card-header>Marker Search</nb-card-header>
+          <nb-card-body>
+            <div class="form-group row">
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </ng-container>
+      <ng-container *ngSwitchCase="2">
+        <nb-card>
+          <nb-card-header>Management Search</nb-card-header>
+          <nb-card-body>
+            <div class="form-group row">
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </ng-container>
+      <ng-container *ngSwitchCase="2">
+        <nb-card>
+          <nb-card-header>Scrum Search</nb-card-header>
+          <nb-card-body>
+            <div class="form-group row">
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </ng-container>
+    </div>
+  </div>
+</div>

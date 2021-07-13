@@ -1,0 +1,28 @@
+
+<div class="col-md-12">
+    <div class="row">
+      <div class="col-sm-6">
+        <label for="inputProject0">Project</label>
+        <nb-select   id="inputProject0" size="tiny" [outline]="true" [selected]="(selectedProject | async)?.code"
+                     (selectedChange)="onProjectChange($event)" [hero]="true"
+                    fullWidth class="type-select" >
+          <nb-option *ngFor="let project of (projects | async)"  [value]="project.code">
+            {{ project.name}}
+          </nb-option>
+        </nb-select>
+      </div>
+      <div class="col-sm-6">
+        <label for="inputColumn0">Column</label>
+        <nb-select   id="inputColumn0" size="tiny" [outline]="true" [selected]="selectedColumn === null? null : selectedColumn.name"
+                     (selectedChange)="onColumnChange($event)" [hero]="true"
+                     fullWidth class="type-select" >
+          <nb-option *ngFor="let column of (columns)"  [value]="column?.name">
+            {{ column?.name}}
+          </nb-option>
+        </nb-select>
+      </div>
+    </div>
+</div>
+
+
+<div id="container" #divRef  ></div>

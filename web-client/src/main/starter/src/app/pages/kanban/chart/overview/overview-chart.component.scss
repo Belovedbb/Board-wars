@@ -1,0 +1,15 @@
+@import '../../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  kanban-overview-chart {
+    display: flex;
+    height: nb-theme(card-height-medium);
+    width: 100%;
+
+    ::ng-deep chart {
+      display: flex;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}

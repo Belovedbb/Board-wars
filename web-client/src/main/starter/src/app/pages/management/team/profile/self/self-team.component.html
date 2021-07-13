@@ -1,0 +1,111 @@
+<form class="form-horizontal" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <nb-card>
+    <nb-card-header>Team #{{team.code}} Details</nb-card-header>
+    <nb-card-body>
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <label for="inputEmail3">
+            Name
+            <span class="text-danger" *ngIf="formGroup.get('name').errors && formGroup.get('name').hasError('required')">*</span>
+          </label>
+          <input type="text" class="form-control" id="inputEmail3"
+                 placeholder="Enter your team name here..." [value]="team.name" formControlName="name"
+                 [class.valid]="formGroup.get('name').valid &&  (formGroup.get('name').dirty || formGroup.get('name').touched)"
+                 [class.invalid]="formGroup.get('name').invalid && (formGroup.get('firstName').dirty || formGroup.get('name').touched)">
+          <div *ngIf="formGroup.get('name').invalid && formGroup.get('name').errors &&  (formGroup.get('name').dirty || formGroup.get('name').touched)">
+            <small class="text-danger"
+                   *ngIf="formGroup.get('firstName').hasError('required')">
+              This field is required.
+            </small>
+            <small class="text-danger"
+                   *ngIf="formGroup.get('name').hasError('minlength')">
+              The minimum length for this field is {{formGroup.get('toDo').errors.minlength.requiredLength}} characters.
+            </small>
+            <small class="text-danger"
+                   *ngIf="formGroup.get('name').hasError('maxlength')">
+              The maximum length for this field is {{formGroup.get('name').errors.maxlength.requiredLength}} characters.
+            </small>
+          </div>
+
+        </div>
+        <div class="col-sm-6">
+          <label for="inputcolor">Color Code</label>
+          <input type="textarea" class="form-control" id="inputcolor"
+                 placeholder="Enter color code here..." formControlName="color">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <label for="inputDescription">Team Description</label>
+          <textarea rows="5" nbInput fullWidth shape="round" [value]="team.description" class="form-control" id="inputDescription"
+                    placeholder="Enter team description here..." formControlName="description"></textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <label for="teamStatus">Status</label>
+          <nb-select id="teamStatus" size="medium" [outline]="true" [hero]="true" fullWidth
+                     class="type-select"
+                     formControlName="status"
+                     [ngClass]="{'form-control-danger': formGroup.invalid && (formGroup.dirty || formGroup.touched)}">
+            <nb-option *ngFor="let t of statuses" [value]="t.key">
+              {{ t.value }}
+            </nb-option>
+          </nb-select>
+        </div>
+        <div class="col-sm-6">
+
+        </div>
+      </div>
+
+    </nb-card-body>
+  </nb-card>
+  <nb-card>
+    <nb-card-header>Team-Mates Information</nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="mates">Members Selection</label>
+            <!--[disabled]="selectableUser.username === team.leader.username"-->
+            <nb-select id="mates"
+              [(selected)]="teamMembers" [compareWith]="compareWith"
+              multiple fullWidth filled formControlName="teamMembers"
+              placeholder="Select team members">
+              <nb-option  *ngFor="let selectableUser of allSelectableUsers | async" [value]="selectableUser.username">
+                {{ selectableUser.firstName + ' ' + selectableUser?.otherNames + (team.leader.username === selectableUser.username ? '(Leader)' : '')}}
+              </nb-option>
+            </nb-select>
+
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputLeader">Leader</label>
+            <input type="text" disabled class="form-control" [value]="team.leader.username" id="inputLeader" placeholder="Leader">
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+  <nb-card>
+    <nb-card-header>Miscellaneous</nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputDateCreated">Date Created</label>
+            <input type="text" disabled class="form-control" id="inputDateCreated" placeholder="Date Created">
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+  <nb-card>
+    <nb-card-body>
+      <div class="row header">
+        <button [disabled]="formGroup.invalid" [status]="'primary'" nbButton outline>Update</button>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</form>

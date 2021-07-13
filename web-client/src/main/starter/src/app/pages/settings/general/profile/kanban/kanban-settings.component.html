@@ -1,0 +1,93 @@
+<form class="form-horizontal" [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)">
+  <nb-card>
+    <nb-card-header>Kanban Settings</nb-card-header>
+    <nb-card-body>
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <label for="inputEmail3">
+            Project
+          </label>
+          <nb-select   id="inputProject0" size="tiny" [outline]="true" [selected]="(selectedProject | async)?.code"
+                       (selectedChange)="onProjectChange($event)" [hero]="true"
+                       fullWidth class="type-select" >
+            <nb-option *ngFor="let project of (projects | async)"  [value]="project.code">
+              {{ project.name}}
+            </nb-option>
+          </nb-select>
+        </div>
+        <div class="col-sm-6">
+          <label for="inputLastName">Column</label>
+          <nb-select   id="inputColumn0" size="tiny" [outline]="true" [selected]="selectedColumn === null? null : selectedColumn.name"
+                       (selectedChange)="onColumnChange($event)" [hero]="true"
+                       fullWidth class="type-select" >
+            <nb-option *ngFor="let column of (columns)"  [value]="column?.name">
+              {{ column?.name}}
+            </nb-option>
+          </nb-select>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+  <ng-container *ngIf="(selectedProject | async)">
+    <nb-card>
+      <nb-card-header>Project {{(selectedProject | async)?.name}}</nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="inputName">Name</label>
+              <input class="form-control" id="inputName" placeholder="Name" formControlName="projectName">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="projectDescription">Description</label>
+              <textarea rows="5" nbInput fullWidth shape="round" class="form-control" id="projectDescription"
+                        placeholder="Enter description here..." formControlName="projectDescription"></textarea>
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </ng-container>
+  <ng-container *ngIf="selectedColumn">
+    <nb-card>
+      <nb-card-header>Column {{selectedColumn.name}}</nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="columnColor">Color</label>
+              <input class="form-control" id="columnColor" formControlName="columnColor" placeholder="Color">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="columnTaskLimit">Task Limit</label>
+              <input type="number" formControlName="columnTaskLimit" id="columnTaskLimit" nbInput fieldSize="tiny"
+                     fullWidth shape="round" placeholder="Limit">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="columnDescription">Description</label>
+              <textarea rows="5" nbInput fullWidth shape="round" class="form-control" id="columnDescription"
+                        placeholder="Enter description here..." formControlName="columnDescription"></textarea>
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </ng-container>
+  <nb-card>
+    <nb-card-body>
+      <div class="row header">
+        <button [disabled]="formGroup.invalid" [status]="'primary'" nbButton outline>Update</button>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</form>

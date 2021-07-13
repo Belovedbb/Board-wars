@@ -1,0 +1,77 @@
+<div [class.deactivate-div]="deactivateMainComponentView  | async" >
+<nb-card>
+  <nb-card-header>
+    Kanban Board
+  </nb-card-header>
+  <nb-card-body>
+      <div class="root board board-root">
+        <div class="board-bar row show-grid">
+          <div class="col-md-2">
+            <span [nbTooltip]="(selectedProject | async)?.description" nbTooltipPlacement="top"
+                  nbTooltipStatus="primary">{{ (selectedProject | async)?.name }}</span>
+          </div>
+          <div class="col-md-2">
+              <nb-select  size="tiny" [outline]="true" [selected]="(selectedProject | async)?.code" (selectedChange)="onProjectChange($event)" [hero]="true" fullWidth
+                         class="type-select" >
+                <nb-option *ngFor="let project of (board | async)"  [value]="project.code">
+                  {{ project.name}}
+                </nb-option>
+              </nb-select>
+          </div>
+          <div class="col-md-1">
+            <nb-icon class="eva-hover" [config]="{icon: 'plus-outline', pack:'eva', status: 'primary'}" (click)="onProjectAddClicked()"></nb-icon>
+          </div>
+          <div class="col-md-2" *ngIf="selectedProject !== null && (selectedProject | async)">
+            <button nbButton hero size="tiny" status="primary" [nbPopover]="columnSubBoard">Add Column</button>
+          </div>
+        </div>
+        <div class="board-wrapper">
+
+          <div class="board-columns" cdkDropListGroup>
+            <div class="board-column" *ngFor="let column of (selectedProject | async)?.columns">
+
+              <div class="columns column-title">
+                <div [nbTooltip]="column?.description" nbTooltipPlacement="top" nbTooltipStatus="primary"
+                     class="column is-10" style="color: rgba(58,79,105,0.87)">{{column?.name}} - {{column?.tasks.length}}</div>
+              </div>
+              <div class="tasks-container"
+                   [id]="column.name"
+                   cdkDropList
+                   [cdkDropListData]="column?.tasks"
+                   (cdkDropListDropped)="drop($event, column?.taskLimit, selectedProject, column, $event.previousContainer.id)">
+                <div  *ngFor="let item of column?.tasks" (click)="onEditTask(selectedProject, column, item)" [className]= "'task ' + getCategoryColorOutline(item)" cdkDrag>
+                  <div class="task-header" style="color: black">
+                    {{item?.name.toUpperCase()}}
+                  </div>
+                  <div class="task-body" >
+                    <div class="columns">
+                      <div [innerHTML]="item.description" class="column is-2 is-offset-4"  style="color: black"></div>
+                    </div>
+                    <div class="columns">
+                      <div class="column is-full "  style="color: black">{{formatDate(item?.startDate)}} - {{formatDate(item?.endDate)}}</div>
+                    </div>
+                    <div [className]="'task-body-display ' + getCategoryIcon(item)">
+                    </div>
+                  </div>
+                  <div class="task-footer">
+                    <nb-tag-list size="tiny" >
+                      <nb-tag size="tiny" appearance="outline" *ngFor="let tree of item?.tags"
+                              [text]="tree" status="primary"></nb-tag>
+                    </nb-tag-list>
+                  </div>
+                </div>
+                <div *ngIf="canDisplayAddTask(column)" class="plus-outline-center">
+                  <nb-icon class="eva-hover icon-size" (click)="onNewTask(selectedProject, column)" [config]="{icon: 'plus-outline', pack:'eva', status: 'primary'}"></nb-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </nb-card-body>
+</nb-card>
+</div>
+
+<ng-template #columnSubBoard>
+  <column-sub-board [title]="'Add Column'" [type]="'NEW_COLUMN'" [project]="selectedProject" [parent]="this"></column-sub-board>
+</ng-template>

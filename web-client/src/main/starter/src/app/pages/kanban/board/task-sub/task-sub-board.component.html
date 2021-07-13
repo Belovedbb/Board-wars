@@ -1,0 +1,249 @@
+<div *ngIf="type === 0" class="scrollable-container">
+<nb-card class="sub-root">
+  <nb-card-header >{{ title }}</nb-card-header>
+  <nb-card-body class="row transparent">
+      <div class="col-md-12">
+        <form [formGroup]="formGroup" (ngSubmit)="onNewTaskSubmit()">
+          <div class="form-group row">
+            <div class="col-sm-6">
+              <label for="inputProject0">Project</label>
+              <nb-select disabled  id="inputProject0" outline  size="tiny" [selected]="selectedProject ? selectedProject?.code: ''"
+                         [outline]="true"  [hero]="true" fullWidth class="type-select">
+                <nb-option *ngIf="selectedProject" [value]="selectedProject?.code">
+                  {{selectedProject?.name}}
+                </nb-option>
+              </nb-select>
+            </div>
+            <div class="col-sm-6">
+              <label for="inputColumn0">Column</label>
+              <nb-select disabled  id="inputColumn0" outline  size="tiny" [selected]="column?.name"
+                          [outline]="true"  [hero]="true" fullWidth class="type-select">
+                <nb-option  [value]="column?.name">
+                  {{column?.name}}
+                </nb-option>
+              </nb-select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-12">
+              <label for="inputTitle0">Title</label>
+              <input formControlName="inputTitle0" id="inputTitle0"  nbInput fieldSize="small" fullWidth shape="round" placeholder="Title">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-12">
+              <label for="inputAssignee0">Assignee</label>
+              <nb-select formControlName="inputAssignee0" id="inputAssignee0" outline  size="tiny"
+                         [outline]="true"  [hero]="true" fullWidth class="type-select"
+                         [ngClass]="{'form-control-danger': formGroup.invalid && (formGroup.dirty || formGroup.touched)}">
+                <nb-option *ngFor="let user of assignees | async" [value]="user.username">
+                  {{user.username + '|' + user.firstName}}
+                </nb-option>
+              </nb-select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-12">
+              <label for="inputDescription0">Description</label>
+              <ngx-tiny-mce id="inputDescription0" ></ngx-tiny-mce>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-12">
+              <label for="inputStartDate0">Start Date</label>
+              <input formControlName="inputStartDate0"  id="inputStartDate0" readOnly nbInput fieldSize="tiny"
+                     fullWidth shape="round" placeholder="Date" [nbDatepicker]="datepickerStart0">
+              <nb-datepicker [date]="initialDate" #datepickerStart0></nb-datepicker>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-12">
+              <label for="inputEndDate0">End Date</label>
+              <input formControlName="inputEndDate0" id="inputEndDate0" readOnly nbInput fieldSize="tiny"
+                     fullWidth shape="round" placeholder="Date" [nbDatepicker]="datepickerEnd0">
+              <nb-datepicker [date]="initialDate" #datepickerEnd0></nb-datepicker>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-6">
+              <label for="inputTag0">Tag</label>
+              <input id="inputTag0" nbInput fieldSize="tiny"  fullWidth shape="round" #tagInput [name]="taskInputTag">
+              <button style="margin-top: 6px; width: 50%;" type="button" shape="round" [fullWidth]="false" nbButton hero size="tiny" status="primary"
+                      outline (click)="onAddTaskTag(tagInput)">Add Tag</button>
+            </div>
+            <div class="col-sm-6">
+              <nb-tag-list size="tiny" >
+                <nb-tag size="tiny" appearance="outline" *ngFor="let tree of taskTags" removable (remove)="onTaskProjectTag($event)"
+                        [text]="tree" status="primary"></nb-tag>
+              </nb-tag-list>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-12">
+              <label >Category</label>
+              <nb-select *ngIf="categories" formControlName="inputCategory0" id="inputCategory0" outline  size="tiny"
+                         [outline]="true"  [hero]="true" fullWidth class="type-select"
+                         [ngClass]="{'form-control-danger': formGroup.invalid && (formGroup.dirty || formGroup.touched)}">
+                <nb-option *ngFor="let category of categories" [value]="category.part">
+                  <span [style]="'color:'+category.color">{{category.part}}</span>
+                </nb-option>
+              </nb-select>
+            </div>
+          </div>
+          <div class="form-group  row">
+            <div class="col-sm-12">
+              <div class="d-flex align-items-end flex-column">
+                <br/>
+                <div class="buttons-row">
+                  <button [disabled]="formGroup.invalid" size="small" [status]="'primary'" nbButton outline>Create</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+  </nb-card-body>
+  <nb-card-footer class="">
+    <button nbButton hero size="tiny" status="primary" (click)="dismiss()">Close</button>
+  </nb-card-footer>
+</nb-card>
+</div>
+<div *ngIf="type === 1" >
+  <nb-card class="sub-root">
+    <nb-card-header >{{ title }}</nb-card-header>
+    <nb-card-body class="row transparent">
+      <div class="col-md-12">
+        <form [formGroup]="formGroup" (ngSubmit)="onEditTaskSubmit()">
+          <div class="row show-grid">
+            <div class="summary col-4 col-md-2">
+                <div class="form-group row">
+                  <div class="col-sm-12 app-name">
+                    <label >Reporter</label>
+                  </div>
+                  <div class="col-sm-12">
+                    <label >{{task?.reporter?.identity}}</label>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-12 app-name">
+                    <label >Assignee</label>
+                  </div>
+                  <div class="col-sm-12">
+                    <label >{{task?.assignee?.identity}}</label>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-12 app-name">
+                    <label >Category</label>
+                  </div>
+                  <div  [className]="'col-sm-12 ' + getCategoryIcon(task)">
+                    <span>{{task?.categories[0]}}</span>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-12 app-name">
+                    <label>Tags</label>
+                  </div>
+                  <div class="col-sm-12">
+                    <nb-tag-list size="tiny">
+                      <nb-tag size="tiny" appearance="outline" *ngFor="let tree of task?.tags" [text]="tree" status="primary"></nb-tag>
+                    </nb-tag-list>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-12 app-name">
+                    <label>Start Date</label>
+                  </div>
+                  <div class="col-sm-12">
+                    <span >{{formatDate(task?.startDate)}}</span>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-12 app-name">
+                    <label>End Date</label>
+                  </div>
+                  <div class="col-sm-12">
+                    <span >{{formatDate(task?.endDate)}}</span>
+                  </div>
+                </div>
+              <div class="form-group row">
+                <div class="col-sm-12 app-name">
+                  <label>Created/Updated Date</label>
+                </div>
+                <div class="col-sm-12">
+                  <span >{{formatDate(task?.updatedDate)}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="detail col-12 col-sm-8 col-md-10">
+              <div class="form-group row">
+                <div class="col-sm-12">
+                  <label for="inputTitle1">Name</label>
+                  <input disabled [value]="task?.name"  id="inputTitle1" size="75" readOnly nbInput fieldSize="tiny" fullWidth shape="round" >
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-12">
+                  <label for="inputDescription1">Description</label>
+                  <div class="colors">
+                    <div class="item text-heading">
+                      <div class="color bg-heading"></div>
+                      <div id="inputDescription1" style="box-shadow: 0 0 8px #c4d6c6;" [innerHTML]="task?.description"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-2">
+                  <button type="button" shape="round"
+                          [fullWidth]="false" nbButton hero size="tiny" status="primary">Add SubTask</button>
+                </div>
+                <div class="col-sm-10">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-12">
+                  <nb-chat size="tiny">
+                    <nb-chat-message *ngFor="let msg of task?.comments"
+                                     [type]="'text'"
+                                     [message]="msg.comment"
+                                     [reply]="msg.reply"
+                                     [sender]="msg?.teamUser?.identity"
+                                     [date]="msg.timeCreated"
+                                     [quote]="''"
+                                     [latitude]="53.914321"
+                                     [longitude]="27.5998355"
+                                     [avatar]="msg?.teamUser?.pictureUrl">
+                    </nb-chat-message>
+                  </nb-chat>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-10">
+                  <textarea style="resize: none;" id="inputComment" #taskCommentTag [name]="taskCommentTag"  rows="2" nbInput fullWidth shape="round"></textarea>
+                </div>
+                <div class="col-sm-2">
+                  <button style="margin-top: 25%;" type="button" shape="round"
+                          [fullWidth]="false" nbButton hero (click)="onNewTaskCommentSubmit(task, project, column, taskCommentTag);" size="tiny" status="primary">Comment</button>
+                </div>
+              </div>
+              <div class="form-group  row">
+                <div class="col-sm-12">
+                  <div class="d-flex align-items-end flex-column">
+                    <br/>
+                    <div class="buttons-row">
+                      <button [disabled]="formGroup.invalid" size="small" [status]="'primary'" nbButton outline>Update</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </nb-card-body>
+    <nb-card-footer class="">
+      <button nbButton hero size="tiny" status="primary" (click)="dismiss()">Close</button>
+    </nb-card-footer>
+  </nb-card>
+</div>

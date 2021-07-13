@@ -1,0 +1,8 @@
+spring:
+  config:
+    import: configserver:http://config-service:8071
+  cloud:
+    config:
+      name: registry-server
+      profile: prod
+      label: main

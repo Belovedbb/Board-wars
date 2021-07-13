@@ -1,0 +1,49 @@
+{
+  "api_host": "http://localhost:8081",
+  "api_version": "/api/v1",
+  "self_host": "http://localhost:8081",
+
+  "auth_type_github": "github",
+  "auth_type_local": "local",
+
+  "auth_state": "/auth/state",
+  "global_marker": "/home/global-marker",
+  "auth_state_type": "/auth/state/type",
+  "auth_entry_link": "/auth/link/{0}",
+  "auth_marker_global": "/marker/global",
+  "auth_marker_storage": "/marker/storage",
+  "auth_marker_role": "/marker/role",
+  "auth_marker_token": "/marker/token",
+  "auth_marker_save": "/marker/success",
+  "logout": "/logout",
+
+  "history_event_kanban": "/history/events/kanban",
+  "history_persistent_kanban": "/history/persistent/kanban/{0}?page={1}&size={2}",
+  "history_event_management": "/history/events/management",
+  "history_persistent_management": "/history/persistent/management?page={0}&size={1}",
+  "history_event_all": "/history/events/all",
+  "history_persistent_all": "/history/persistent/all?page={0}&size={1}",
+
+  "kanban_activity_frequency": "/kanban/graphics/activity-frequency/{0}",
+  "kanban_activity_frequency_points": "/kanban/graphics/activity-frequency-points/{0}",
+
+  "auth_level_global": "ORGANIZATION_GLOBAL",
+  "auth_level_storage": "ORGANIZATION_STORAGE",
+  "auth_level_role": "ORGANIZATION_ROLE",
+  "auth_level_token": "ORGANIZATION_TOKEN",
+  "auth_level_primary_failure": "PRIMARY_FAILURE",
+  "auth_level_primary_success": "PRIMARY_SUCCESS",
+
+  "network_timeout": 5000,
+  "api_auth_bearer_id_key": "J_AUTH_USER_BEARER_ID",
+  "api_marker_token_hash_key": "X_MARKER_PART_REG_HASH",
+  "api_auth_success" : "SUCCESS",
+  "api_auth_failure" : "FAILURE",
+
+  "api_logged_in_user": "/management/user/current",
+
+  "message": {
+    "generic_error": "An error has occurred"
+  }
+
+}

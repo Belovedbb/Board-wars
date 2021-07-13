@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "baseUrl": "./"
+  },
+  "files": [
+    "main.ts",
+    "polyfills.ts",
+    "app/auth/auth-model.ts"
+  ],
+  "include": [
+    "**/*.d.ts"
+  ]
+}

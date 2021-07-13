@@ -1,0 +1,60 @@
+
+<nb-card *ngIf="type === 'NEW_COLUMN'" class="sub-root">
+  <nb-card-header >{{title + ' (' + (project | async)?.name +')'}}</nb-card-header>
+  <nb-card-body class="row transparent">
+    <div class="col-md-12">
+      <form [formGroup]="formGroup" (ngSubmit)="onNewColumnSubmit()">
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <label for="inputName">Name</label>
+            <input type="text" fieldSize="small"  nbInput fullWidth shape="round" formControlName="columnName"
+                   class="form-control ui-input-text" id="inputName"
+                   [class.valid]="formGroup.get('columnName').valid &&  (formGroup.get('columnName').dirty || formGroup.get('columnName').touched)"
+                   [class.invalid]="formGroup.get('columnName').invalid && (formGroup.get('columnName').dirty || formGroup.get('columnName').touched)">
+            <div *ngIf="formGroup.get('columnName').invalid && formGroup.get('columnName').errors &&  (formGroup.get('columnName').dirty || formGroup.get('columnName').touched)">
+              <small class="text-danger"
+                     *ngIf="formGroup.get('columnName').hasError('required')">
+                This field is required.
+              </small>
+              <small class="text-danger"
+                     *ngIf="formGroup.get('columnName').hasError('minlength')">
+                The minimum length for this field is {{formGroup.get('columnName').errors.minlength.requiredLength}} characters.
+              </small>
+              <small class="text-danger"
+                     *ngIf="formGroup.get('columnName').hasError('maxlength')">
+                The maximum length for this field is {{formGroup.get('columnName').errors.maxlength.requiredLength}} characters.
+              </small>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <label for="inputEndDate">Color Code</label>
+            <input formControlName="color" id="inputEndDate" nbInput fieldSize="tiny"
+                   fullWidth shape="round" placeholder="Color">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-9">
+            <label for="inputDescription">Description</label>
+            <textarea formControlName="description" style="resize: none;" id="inputDescription"  rows="2" nbInput fullWidth shape="round"></textarea>
+          </div>
+          <div class="col-sm-3">
+            <label for="limit">Limit</label>
+            <input type="number" formControlName="limit" id="limit" nbInput fieldSize="tiny"
+                   fullWidth shape="round" placeholder="Limit">
+          </div>
+        </div>
+        <div class="form-group  row">
+          <div class="col-sm-12">
+            <div class="d-flex align-items-end flex-column">
+              <br/>
+              <div class="buttons-row">
+                <button [disabled]="formGroup.invalid" size="small" [status]="'primary'" nbButton outline>Create</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </nb-card-body>
+  <nb-card-footer class=""></nb-card-footer>
+</nb-card>

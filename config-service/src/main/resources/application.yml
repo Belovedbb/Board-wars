@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: config-service
+
+  profiles:
+    active: git
+
+  cloud:
+    config:
+      discovery:
+        enabled: true
+      server:
+        git:
+          uri: https://github.com/belovedbb/Board-warsConfigProps.git
+          username: belovedbb
+          search-paths: flavor/**
+          default-label: main
+
+server:
+  port: 8071
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

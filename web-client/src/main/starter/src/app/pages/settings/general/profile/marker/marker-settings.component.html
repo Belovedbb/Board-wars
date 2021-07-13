@@ -1,0 +1,31 @@
+<form class="form-horizontal" [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)">
+  <nb-card>
+    <nb-card-header>Organization</nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="columnColor">Name</label>
+            <input class="form-control" id="organizationName" formControlName="organizationName" placeholder="Name">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="columnDescription">Description</label>
+            <textarea rows="5" nbInput fullWidth shape="round" class="form-control" id="organizationDescription"
+                      placeholder="Enter description here..." formControlName="organizationDescription"></textarea>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+  <nb-card>
+    <nb-card-body>
+      <div class="row header">
+        <button [disabled]="formGroup.invalid" [status]="'primary'" nbButton outline>Update</button>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</form>

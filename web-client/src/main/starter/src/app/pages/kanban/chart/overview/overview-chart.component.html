@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-sm-6">
+      <label for="inputProject0">Project</label>
+      <nb-select   id="inputProject0" size="tiny" [outline]="true" [selected]="(selectedProject | async)?.code"
+                   (selectedChange)="onProjectChange($event)" [hero]="true"
+                   fullWidth class="type-select" >
+        <nb-option *ngFor="let project of (projects | async)"  [value]="project.code">
+          {{ project.name}}
+        </nb-option>
+      </nb-select>
+    </div>
+    <div class="col-sm-6">
+      <label for="inputOrder0">Order</label>
+      <nb-select   id="inputOrder0" size="tiny" [outline]="true" [selected]="selectedOrder == null ? '' : selectedOrder.key"
+                   (selectedChange)="onOrderChangeChange($event)" [hero]="true"
+                   fullWidth class="type-select" >
+        <nb-option *ngFor="let order of (orders)"  [value]="order?.key">
+          {{ order?.type}}
+        </nb-option>
+      </nb-select>
+    </div>
+</div>
+<div>
+
+</div>
+<br/>
+<chart type="pie" [data]="data" [options]="options"></chart>

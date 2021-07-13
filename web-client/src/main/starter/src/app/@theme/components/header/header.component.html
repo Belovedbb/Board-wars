@@ -1,0 +1,39 @@
+<div class="header-container">
+  <div class="logo-container">
+    <div class="sidebar-toggle">
+      <nb-icon icon="menu-2-outline"></nb-icon>
+    </div>
+    <a class="logo" href="#" (click)="navigateHome()">Board <span>Wars</span></a>
+  </div>
+</div>
+
+<div class="header-container">
+  <nb-actions size="small">
+
+    <nb-action class="control-item">
+      <nb-search type="rotate-layout"></nb-search>
+    </nb-action>
+
+    <nb-action class="control-item" >
+      <ng-toggle
+        [(ngModel)]="themeSwitcherConfig.value"
+        [disabled]="themeSwitcherConfig.disabled"
+        [labels]="themeSwitcherConfig.labels"
+        [color]="themeSwitcherConfig.color"
+        [switchColor]="themeSwitcherConfig.switchColor"
+        (ngModelChange)="changeTheme($event)"
+        [width]="themeSwitcherConfig.width"
+        [height]="themeSwitcherConfig.height"
+      >
+      </ng-toggle>
+    </nb-action>
+    <nb-action class="user-action" *nbIsGranted="['view', 'user']" >
+      <nb-user [nbContextMenu]="userMenu"
+               [nbContextMenuTag]="userMenuTag"
+               [onlyPicture]="userPictureOnly"
+               [name]="user?.firstName + ' ' + user?.otherNames"
+               [picture]="user?.profilePictureLink">
+      </nb-user>
+    </nb-action>
+  </nb-actions>
+</div>

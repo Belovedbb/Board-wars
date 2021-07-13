@@ -1,0 +1,36 @@
+version: '3.9'
+services:
+  config-service:
+    build: config-service
+    ports:
+      - 8071:8071
+  registry-server:
+    build: registry-server
+  db-server:
+    build: db-server
+    ports:
+      - 27017:27017
+  public-auth:
+    build: public-auth
+    ports:
+      - 9000:9000
+  public-gateway:
+    build: public-gateway
+    ports:
+      - 8081:8081
+  v1-delegator:
+    build: v1-delegator
+    ports:
+      - 23464:23464
+  kanban-project:
+    build: kanban-project
+    ports:
+      - 45964:45964
+  management-service:
+    build: management-service
+    ports:
+      - 26349:26349
+  web-client:
+    build: web-client/src/main/starter
+    ports:
+      - 8080:8080

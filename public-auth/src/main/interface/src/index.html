@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Auth Login</title>
+
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <ngx-app>Loading...</ngx-app>
+
+  <style>
+    body {
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+      background-color: black;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .loader {
+      width: 10em;
+      height: 10em;
+      font-size: 25px;
+      box-sizing: border-box;
+      border-top: 0.3em solid hotpink;
+      border-radius: 50%;
+      position: relative;
+      animation: rotating 2s ease-in-out infinite;
+      --direction: 1;
+    }
+
+    .loader::before,
+    .loader::after {
+      content: '';
+      position: absolute;
+      width: inherit;
+      height: inherit;
+      border-radius: 50%;
+      box-sizing: border-box;
+      top: -0.2em;
+    }
+
+    .loader::before {
+      border-top: 0.3em solid dodgerblue;
+      transform: rotate(120deg);
+    }
+
+    .loader::after {
+      border-top: 0.3em solid gold;
+      transform: rotate(240deg);
+    }
+
+    .loader span {
+      position: absolute;
+      color: white;
+      width: inherit;
+      height: inherit;
+      text-align: center;
+      line-height: 10em;
+      font-family: sans-serif;
+      animation: rotating 2s linear infinite;
+      --direction: -1;
+    }
+
+    @keyframes rotating {
+      50% {
+        transform: rotate(calc(180deg * var(--direction)));
+      }
+
+      100% {
+        transform: rotate(calc(360deg * var(--direction)));
+      }
+    }
+
+  </style>
+
+  <div id="nb-global-spinner" class="spinner">
+    <div class="loader">
+      <span>Loading...</span>
+    </div>
+  </div>
+
+</body>
+</html>

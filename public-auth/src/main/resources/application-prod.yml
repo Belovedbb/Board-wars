@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    config:
+      name: ${spring.application.name}
+      profile: prod
+      label: main
+
+  config:
+    import: configserver:http://config-service:8071

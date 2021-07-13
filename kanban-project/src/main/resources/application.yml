@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: kanban-project
+  profiles:
+    active: dev

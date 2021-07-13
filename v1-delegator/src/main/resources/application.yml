@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: v1-delegator
+  profiles:
+    active: dev

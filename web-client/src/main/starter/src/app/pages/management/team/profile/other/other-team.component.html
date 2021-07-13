@@ -1,0 +1,83 @@
+<form class="form-horizontal">
+  <nb-card>
+    <nb-card-header>Team #{{team.code}} Details</nb-card-header>
+    <nb-card-body>
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <label for="inputEmail3">
+            Name
+          </label>
+          <input type="text" class="form-control" id="inputEmail3"
+                 placeholder="Enter your team name here..." [value]="team.name" disabled>
+        </div>
+        <div class="col-sm-6">
+          <label for="inputcolor">Color Code</label>
+          <input type="textarea" class="form-control" id="inputcolor"
+                 placeholder="Enter color code here..." [value]="team.colorCode" disabled>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <label for="inputDescription">Team Description</label>
+          <textarea rows="5" nbInput fullWidth disabled shape="round" [value]="team.description ? team.description : ''"
+                    class="form-control" id="inputDescription"
+                    placeholder="Enter team description here..."></textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <label for="teamStatus">Status</label>
+          <nb-select id="teamStatus" disabled size="medium" [outline]="true" [hero]="true" fullWidth
+                     class="type-select" [selected]="team.active">
+            <nb-option [value]="team.active">
+              {{ team.active ? 'Active' : 'Inactive' }}
+            </nb-option>
+          </nb-select>
+        </div>
+        <div class="col-sm-6">
+        </div>
+      </div>
+
+    </nb-card-body>
+  </nb-card>
+  <nb-card>
+    <nb-card-header>Team-Mates Information</nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="mates">Members Selection</label>
+            <nb-select id="mates" disabled
+                       [(selected)]="teamMembers" [compareWith]="compareWith"
+                       multiple fullWidth filled
+                       placeholder="Select team members">
+              <nb-option  *ngFor="let selectableUser of teamMembers " [value]="selectableUser.username">
+                {{ selectableUser.firstName + ' ' + selectableUser?.otherNames + (team.leader.username === selectableUser.username ? '(Leader)' : '')}}
+              </nb-option>
+            </nb-select>
+
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputLeader">Leader</label>
+            <input type="text" disabled class="form-control" [value]="team.leader.username" id="inputLeader" placeholder="Leader">
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+  <nb-card>
+    <nb-card-header>Miscellaneous</nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputDateCreated">Date Created</label>
+            <input type="text" [value]="team.dateCreated" disabled class="form-control" id="inputDateCreated" placeholder="Date Created">
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</form>

@@ -1,0 +1,44 @@
+/*:host ::ng-deep nb-stepper .step-content {
+  text-align: center;
+
+  button {
+    cursor: pointer;
+    margin: 0.5rem;
+  }
+  //width: 50vh;
+  //width : 200%;
+  //height: calc((100% * 16)/9);
+}
+
+:host {
+  height: 50vh;
+  width : 100%;
+}
+
+.size-adjust {
+  max-width: 800px;
+  max-height: 44.25rem;
+  min-width: 200%;
+}*/
+
+.card.model-full {
+  min-width: 900px;
+  max-width: 900px;
+  min-height: 120%;
+  max-height: 120%;
+}
+.deactivate {
+  filter: blur(3px);
+  pointer-events:none;
+}
+
+.scrollable-card{
+  max-height: 100%;
+  overflow-y: hidden;
+}
+
+.spacer {
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 10px;
+}

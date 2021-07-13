@@ -1,0 +1,21 @@
+@import '../../@theme/styles/themes';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+
+@include nb-install-component() {
+
+  .stats {
+    margin-right: 1rem;
+
+    > .caption {
+      display: block;
+    }
+  }
+
+}
+
+.stat-thin {
+  margin: auto auto 2px;
+  background-color: #fff;
+  border-radius: 5px;
+}

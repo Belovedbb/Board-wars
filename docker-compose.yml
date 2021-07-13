@@ -1,0 +1,151 @@
+version: '3.9'
+services:
+  config-service:
+    image: config-service
+    networks:
+      - connector
+    ports:
+      - 8071:8071
+    restart: always
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+  registry-server:
+    image: registry-server
+    restart: always
+    environment:
+      - "SPRING_PROFILES_ACTIVE=prod"
+    networks:
+      - connector
+    depends_on:
+      config-service:
+        condition: service_healthy
+    ports:
+      - 8888:8888
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+  db-server:
+    restart: always
+    image: db-server
+    networks:
+      - connector
+    ports:
+      - 27017:27017
+  zookeeper:
+    image: wurstmeister/zookeeper:3.4.6
+    ports:
+      - "2181:2181"
+    networks:
+      - connector
+
+  kafka-server:
+    image: wurstmeister/kafka:2.12-2.5.0
+    ports:
+      - 9092:9092
+    links:
+      - zookeeper
+    environment:
+      KAFKA_LISTENERS: PLAINTEXT://:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-server:9092
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - connector
+  public-auth:
+    image: public-auth
+    restart: always
+    environment:
+      - "SPRING_PROFILES_ACTIVE=prod"
+    networks:
+      - connector
+    ports:
+      - 9000:9000
+    depends_on:
+      config-service:
+        condition: service_healthy
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+  public-gateway:
+    image: public-gateway
+    restart: always
+    environment:
+      - "SPRING_PROFILES_ACTIVE=prod"
+    networks:
+      - connector
+    ports:
+      - 8081:8081
+    depends_on:
+      config-service:
+        condition: service_healthy
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+  v1-delegator:
+    image: v1-delegator
+    restart: always
+    environment:
+      - "SPRING_PROFILES_ACTIVE=prod"
+    networks:
+      - connector
+    ports:
+      - 23464:23464
+    depends_on:
+      config-service:
+        condition: service_healthy
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+  kanban-project:
+    image: kanban-project
+    restart: always
+    environment:
+      - "SPRING_PROFILES_ACTIVE=prod"
+    networks:
+      - connector
+    ports:
+      - 45964:45964
+    depends_on:
+      config-service:
+        condition: service_healthy
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+  management-service:
+    image: management-service
+    restart: always
+    environment:
+      - "SPRING_PROFILES_ACTIVE=prod"
+    networks:
+      - connector
+    ports:
+      - 26349:26349
+    depends_on:
+      config-service:
+        condition: service_healthy
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+  web-client:
+    image: web-client
+    restart: always
+    networks:
+      - connector
+    ports:
+      - 8080:8080
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+networks:
+  connector:
+    driver: bridge

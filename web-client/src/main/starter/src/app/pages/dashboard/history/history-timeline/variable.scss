@@ -1,0 +1,46 @@
+
+$clr-green: #60b515;
+$clr-red: #c92100;
+$clr-gray: #737373;
+$clr-action-blue: #0079b8;
+$clr-color-neutral-600: #737373 !default;
+$clr-color-neutral-700: #565656 !default;
+$clr-color-neutral-1000: #000 !default;
+
+
+
+// colors
+// TODO: this color is in spec but not defined in Clarity
+$clr-timeline-line-color: #9b9b9b;
+$clr-timeline-step-header-color: $clr-color-neutral-600;
+$clr-timeline-step-title-color: $clr-color-neutral-1000;
+$clr-timeline-step-description-color: $clr-color-neutral-700;
+
+// 1rem = 24px
+
+$clr-timeline-icon-size: 1.5rem;
+$clr-timeline-icon-inner-padding: 0.083333rem;   // 2px
+$clr-timeline-padding-width: 0.5rem;
+$clr-timeline-line-thickness: 0.083333rem;   // 2px
+
+// horizontal
+$clr-timeline-horizontal-step-min-width: 4.5rem;
+$clr-timeline-horizontal-gutter-width: 0.5rem;
+
+$clr-timeline-horizontal-step-title-padding-top: 0.5rem;
+$clr-timeline-horizontal-step-title-padding-bottom: 0.25rem;
+
+$clr-timeline-vertical-min-width: 13.33333rem;
+$clr-timeline-vertical-step-min-width: 7.333333rem;
+$clr-timeline-vertical-gutter-width: 1.5rem;
+
+// vertical
+$clr-timeline-vertical-step-header-min-width: 2.5rem;
+$clr-timeline-vertical-step-header-top-padding: 0.25rem;
+$clr-timeline-vertical-step-header-right-padding: 0.5rem;
+
+$clr-timeline-step-title-line-height: 0.75rem;
+
+$clr-timeline-vertical-step-body-top-padding: 0.25rem;
+$clr-timeline-vertical-step-body-left-padding: 0.5rem;
+

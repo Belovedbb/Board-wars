@@ -1,0 +1,32 @@
+<div class="lists row">
+  <div class="col-md-9 col-lg-3 col-xxxl-3">
+    <nb-card class="list-card">
+      <nb-card-header>My Team List</nb-card-header>
+        <nb-list>
+          <nb-list-item class="list-cursor" (click)="selectTeam(team)" *ngFor="let team of teams | async">
+            <nb-user size="giant" [name]="team.name" [color]="team.colorCode"
+                     [title]="team.code" [badgeText]="team.active ? 'Active': 'Inactive'"
+                     badgeStatus="success"
+                     badgePosition="bottom right"></nb-user>
+          </nb-list-item>
+        </nb-list>
+    </nb-card>
+  </div>
+
+  <div class="col-md-12 col-lg-9 col-xxxl-9" >
+    <ng-container *ngIf="currentTeam; else createTeam">
+      <div [ngSwitch]="(currentTeam)?.isLeader">
+        <ng-container *ngSwitchCase="true">
+          <profile-self-team [team]='currentTeam'></profile-self-team>
+        </ng-container>
+        <ng-container *ngSwitchCase="false">
+          <profile-other-team [team]='currentTeam'></profile-other-team>
+        </ng-container>
+    </div>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #createTeam>
+  <profile-new-team></profile-new-team>
+</ng-template>

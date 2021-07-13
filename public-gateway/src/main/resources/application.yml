@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: public-gateway
+  profiles:
+    active: dev
+

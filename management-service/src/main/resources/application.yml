@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: management-service
+  profiles:
+    active: dev

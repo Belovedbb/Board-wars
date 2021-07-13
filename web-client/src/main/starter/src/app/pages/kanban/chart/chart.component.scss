@@ -1,0 +1,33 @@
+.max-card{
+  max-height: 100%;
+  overflow-y: hidden;
+}
+@import '../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  kanban-gantt-chart,
+  kanban-overview-chart,
+  kanban-cfd-chart {
+    display: block;
+    height: nb-theme(card-height-medium);
+    width: 100%;
+
+    ::ng-deep chart {
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+
+.max-width {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+.card-shadow {
+  box-shadow: -8px 6px 5px 0px gray;
+  -webkit-box-shadow: -8px 6px 5px 0px rgba(0,0,0,0.34);
+  -moz-box-shadow: -8px 6px 5px 0px rgba(0,0,0,0.34);
+}

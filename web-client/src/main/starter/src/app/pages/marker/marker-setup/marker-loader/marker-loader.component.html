@@ -1,0 +1,72 @@
+<div [class.deactivate]="deactivateComponentView  | async" >
+  <div class="steppers-container row">
+    <div class="col-lg-12">
+      <nb-card class="card model-full scrollable-card" accent="primary">
+        <nb-card-header>{{ title }}</nb-card-header>
+        <nb-card-body>
+          <nb-stepper [disableStepNavigation]="true">
+            <nb-step [stepControl]="globalForm" [completed]="isGlobalCompleted | async" label="Register">
+              <form [formGroup]="globalForm" (ngSubmit)="onGlobalSubmit()" class="step-container">
+                <marker-global [deactivateParentView]="deactivateComponentView" [isGlobalCompleted]="isGlobalCompleted"></marker-global>
+                <div class="d-flex align-items-end flex-column">
+                  <div *ngIf="isGlobalCompleted | async">
+                    <button nbButton nbStepperNext>next</button>
+                  </div>
+                </div>
+              </form>
+            </nb-step>
+            <nb-step [completed]="isStorageCompleted | async" [stepControl]="storageForm" label="Storage">
+              <form [formGroup]="storageForm"  class="step-container">
+                <marker-storage [isStorageCompleted] = "isStorageCompleted" ></marker-storage>
+                <div class="d-flex align-items-end flex-column">
+                  <div class="spacer">
+                    <button nbButton nbStepperPrevious>prev</button>
+                    <div *ngIf="isStorageCompleted | async">
+                      <button nbButton nbStepperNext>next</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </nb-step>
+            <nb-step [completed]="isRoleCompleted | async" [stepControl]="roleForm" label="Role">
+              <form [formGroup]="roleForm" class="step-container">
+                <marker-role [isRoleCompleted] = "isRoleCompleted" [entities] = "entities"></marker-role>
+                <div class="d-flex align-items-end flex-column">
+                  <div class="spacer">
+                    <button nbButton nbStepperPrevious>prev</button>
+                    <div *ngIf="isRoleCompleted | async">
+                      <button nbButton nbStepperNext>next</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </nb-step>
+            <nb-step [completed]="isTokenCompleted | async" [stepControl]="tokenForm" label="Token">
+              <form [formGroup]="tokenForm"  class="step-container">
+                <marker-token [isTokenCompleted] = "isTokenCompleted" [roleEntities] = "entities"></marker-token>
+                <div class="d-flex align-items-end flex-column">
+                  <div class="spacer">
+                    <button nbButton nbStepperPrevious>prev</button>
+                    <div *ngIf="isTokenCompleted | async">
+                      <button nbButton nbStepperNext>next</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </nb-step>
+            <nb-step [stepControl]="completedForm" [hidden]="true" label="Revision">
+              <div class="step-container">
+                <h3>Configuration Completed!</h3>
+                <div class="d-flex align-items-end flex-column">
+                  <div class="spacer">
+                    <button nbButton (click)="finalize()">Finalize</button>
+                  </div>
+                </div>
+              </div>
+            </nb-step>
+          </nb-stepper>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>

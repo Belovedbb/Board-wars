@@ -1,0 +1,62 @@
+<div class=" row">
+  <div class="col-md-9 col-lg-3 col-xxxl-3">
+    <div class="row" [@changeStatePanel]="currentPanelState" (@changeStatePanel.done)="endStatePanel()" >
+      <nb-card class="list-card" size="giant" accent="primary">
+        <nb-card-header>Charts</nb-card-header>
+        <nb-card-body>
+          <nb-list>
+            <nb-list-item  *ngFor="let chart of charts">
+              <div class="col-sm-12">
+                <button class="list-cursor" type="button" shape="round" fullWidth nbButton hero size="medium" status="primary"
+                        outline (click)="onChartSelect(chart.key)">
+                  {{chart.name}}
+                </button>
+              </div>
+            </nb-list-item>
+          </nb-list>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+
+  <div class="col-md-12 col-lg-9 col-xxxl-9">
+    <div class="row" [@changeState]="currentState" (@changeState.done)="endState()" >
+      <div [ngSwitch]="currentChart">
+        <ng-container *ngSwitchCase="'ov'" >
+          <div class="max-width col-lg-12">
+            <nb-card class="card-shadow max-card" size="giant" accent="primary">
+              <nb-card-header style="text-align: center;">Task Overview</nb-card-header>
+              <nb-card-body>
+                <kanban-overview-chart></kanban-overview-chart>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'gt'">
+          <div class="max-width col-lg-12">
+          <nb-card class="card-shadow max-card " size="giant" accent="primary">
+            <nb-card-header style="text-align: center;">Gantt</nb-card-header>
+            <nb-card-body>
+              <kanban-gantt-chart></kanban-gantt-chart>
+            </nb-card-body>
+          </nb-card>
+          </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'cfd'">
+          <div class="max-width col-lg-12">
+            <nb-card class="card-shadow max-card" size="giant" accent="primary">
+              <nb-card-header style="text-align: center;">Cumulative</nb-card-header>
+              <nb-card-body>
+                <kanban-cfd-chart></kanban-cfd-chart>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+

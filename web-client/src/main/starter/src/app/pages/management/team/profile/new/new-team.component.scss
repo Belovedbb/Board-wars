@@ -1,0 +1,141 @@
+.user {
+  position: relative;
+  border-radius: 5px;
+  background-position: center;
+  background-size: cover;
+  padding: 0;
+  margin-bottom: 25px;
+  height: 220px;
+  width: 220px;
+  &::before {
+    background-color:rgba(255, 255, 255, 0.1);
+    content: '';
+    position: absolute;
+    height: 100%;
+    opacity: 1;
+  }
+
+  &:hover::before {
+    cursor: pointer;
+  }
+}
+
+.update {
+  max-width: 300px;
+  margin-bottom:30px;
+}
+
+i {
+  font-size: 1.2em;
+}
+
+.save {
+  float: right;
+}
+
+.show-text {
+  position: absolute;
+  bottom: 20px;
+  width: 220px;
+  padding-left:10px;
+  padding-right:10px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  background: rgba(7, 7, 7, 0.76);
+  p {
+    font-size: 20px;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+.hide-text {
+  opacity: 0;
+  position: absolute;
+  bottom: 20px;
+  width: 220px;
+  padding-left:10px;
+  padding-right: 10px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  background: rgba(7, 7, 7, 0.76);
+  p {
+    font-size: 20px;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+.get-new-pic-div:hover {
+  cursor: pointer;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .user {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+.image-upload-container {
+  cursor: pointer;
+}
+
+.img-preview-container {
+  background-color: #f7f7f7;
+  position: relative;
+
+  .img-preview {
+    background: center center no-repeat;
+    background-size: contain;
+    height: 116px;
+    width: 116px;
+
+    &-error {
+      display: none;
+    }
+  }
+}
+
+.img-loading-overlay {
+  background-color: black;
+  bottom: 0;
+  left: 0;
+  opacity: .2;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.img-spinning-circle {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.img-spinning-circle:after {
+  content: " ";
+  display: block;
+  width: 46px;
+  height: 46px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

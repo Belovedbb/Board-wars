@@ -1,0 +1,142 @@
+@import '../../../../@theme/styles/themes';
+
+@include nb-install-component() {
+
+  nb-card-body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .location,
+  .date {
+    display: block;
+  }
+
+  .location {
+    margin-bottom: 0.1rem;
+  }
+
+  .today {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .today-temperature {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 2rem 1.5rem;
+  }
+
+  .today-icon {
+    color: nb-theme(color-primary-default);
+    font-size: 10rem;
+    line-height: 1;
+    margin-top: -4rem;
+    margin-left: auto;
+    margin-right: 0.4rem;
+  }
+
+  .today-details {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+  }
+
+  .parameter {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+  .parameter-name,
+  .parameter-value {
+    display: block;
+  }
+
+  .caption {
+    text-transform: uppercase;
+  }
+
+  .weekly-forecast {
+    display: flex;
+    justify-content: space-around;
+    margin: auto 0;
+  }
+
+  .day {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .weather-icon {
+    font-size: 2.5rem;
+    line-height: 2.5rem;
+  }
+}
+.infinite-cards {
+  nb-card {
+    &.own-scroll {
+      height: 50vh;
+    }
+  }
+}
+
+.list-cursor {
+  cursor: pointer;
+}
+
+
+.bodybody {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1em;
+  color: #FFF;
+  margin: 0;
+
+  background: rgb(143,179,211);
+  background: linear-gradient(90deg, rgba(143,179,211,1) 0%, rgba(222,234,246,1) 35%, rgba(243,246,251,1) 100%);
+}
+
+@-webkit-keyframes MoveBG {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@-moz-keyframes MoveBG {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes MoveBG {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+

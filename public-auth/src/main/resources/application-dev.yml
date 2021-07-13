@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    config:
+      name: ${spring.application.name}
+      profile: dev
+      label: main
+
+  config:
+    import: configserver:http://localhost:8071

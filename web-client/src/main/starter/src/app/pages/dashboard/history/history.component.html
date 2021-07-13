@@ -1,0 +1,23 @@
+<nb-card  class=" bodybody list-card" size="large">
+  <div *ngIf="!canShow;else loadHistory">
+
+  </div>
+</nb-card>
+
+<ng-template #loadHistory [ngSwitch]="historyType">
+  <ng-container *ngSwitchCase="0">
+    <dashboard-history-all></dashboard-history-all>
+  </ng-container>
+  <ng-container *ngSwitchCase="1">
+    <dashboard-history-kanban></dashboard-history-kanban>
+  </ng-container>
+  <ng-container *ngSwitchCase="2">
+    <dashboard-history-scrum></dashboard-history-scrum>
+  </ng-container>
+  <ng-container *ngSwitchCase="3">
+    <dashboard-history-graphics></dashboard-history-graphics>
+  </ng-container>
+  <ng-container *ngSwitchCase="4">
+    <dashboard-history-management></dashboard-history-management>
+  </ng-container>
+</ng-template>

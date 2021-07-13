@@ -1,0 +1,10 @@
+<nb-card  class=" bodybody list-card" size="large">
+  <nb-list
+    nbInfiniteList
+    [threshold]="500"
+    (bottomThreshold)="loadNext()" class="">
+    <nb-list-item >
+      <dashboard-history-timeline [data]="data" style="padding: 20px;" ></dashboard-history-timeline>
+    </nb-list-item>
+  </nb-list>
+</nb-card>

@@ -1,0 +1,57 @@
+<form class="form-horizontal" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <nb-card>
+    <nb-card-header>Modify User</nb-card-header>
+    <nb-card-body>
+      <div class=" row">
+        <div class="col-sm-12 center">
+          <div  class="user center" [style.background-image]="'url(' + user.profilePictureLink + ')'"></div>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+  <nb-card>
+    <nb-card-header>Contact Information</nb-card-header>
+    <nb-card-body>
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <label for="inputEmail3">First Name</label>
+          <input type="text" class="form-control" disabled id="inputEmail3" placeholder="Enter your first name here..." [value]="firstName">
+        </div>
+        <div class="col-sm-6">
+          <label for="inputLastName">Last Name</label>
+          <input type="text" class="form-control" disabled id="inputLastName" placeholder="Enter your last name here..." [value]="lastName">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <label for="inputUsernameEmail">Username/Email</label>
+          <input type="text" class="form-control" id="inputUsernameEmail"  disabled [value] = "user.username">
+        </div>
+        <div class="col-sm-6">
+          <label for="inputEmail3">Role</label>
+          <nb-select size="medium" [outline]="true" [hero]="true" fullWidth
+                     class="type-select"
+                     formControlName="role"
+                     [ngClass]="{'form-control-danger': formGroup.invalid && (formGroup.dirty || formGroup.touched)}">
+            <nb-option *ngFor="let t of roleTypes" [value]="t.key">
+              {{ t.value }}
+            </nb-option>
+          </nb-select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <label for="inputPosition">Position</label>
+          <input type="text" class="form-control" id="inputPosition" placeholder="Enter your position here..." disabled [value] = "user.position">
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+  <nb-card>
+    <nb-card-body>
+      <div class="row header">
+        <button [disabled]="formGroup.invalid" [status]="'primary'" nbButton outline>Modify</button>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</form>

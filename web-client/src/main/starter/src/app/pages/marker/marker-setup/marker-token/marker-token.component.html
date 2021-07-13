@@ -1,0 +1,50 @@
+<form formGroupName="tokenControl" (ngSubmit)="onTokenSubmit()">
+  <div class="row rounded">
+    <h5 class="text-heading text-info">Settings</h5>
+  </div>
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="name bold">Expiry Period</div>
+    </div>
+    <div class="col-sm-2">
+      <input type="number" min="1" placeholder="Days" class="form-control"
+             formControlName="expiryPeriodCtrl"
+             [ngClass]="{'form-control-danger': form.invalid && (form.dirty || form.touched)}">
+    </div>
+    <div class="col-sm-2 validation-checkbox">
+      <nb-checkbox status="primary" formControlName="baseEmailCtrl"
+                   [ngClass]="{'form-control-danger': form.invalid && (form.dirty || form.touched)}">Base Email</nb-checkbox>
+    </div>
+    <div class="col-sm-2">
+      <div class="name bold">Attached Role</div>
+    </div>
+    <div class="col-sm-4">
+      <nb-select size="medium" selected="1" [outline]="true" formControlName="attachedRoleCtrl"
+                 [ngClass]="{'form-control-danger': form.invalid && (form.dirty || form.touched)}">
+        <nb-option *ngFor="let role of roleEntities | async" [value]="role.entityName">
+          {{ role.entityName }}
+        </nb-option>
+      </nb-select>
+    </div>
+  </div>
+  <br/>
+  <div class="row rounded">
+    <h5 class="text-heading text-info">Activation</h5>
+  </div>
+  <div class="row">
+    <div class="header">
+        <div class="col-sm-6 validation-checkbox">
+          <nb-checkbox status="primary" formControlName="activateCtrl"
+                       [ngClass]="{'form-control-danger': form.invalid && (form.dirty || form.touched)}">Activate</nb-checkbox>
+        </div>
+        <div class="col-sm-6 validation-checkbox">
+          <nb-checkbox status="primary" formControlName="allowTokenCtrl"
+                       [ngClass]="{'form-control-danger': form.invalid && (form.dirty || form.touched)}">Token Password</nb-checkbox>
+        </div>
+    </div>
+  </div>
+  <div class="row header">
+    <button [disabled]="disableSubmit" [status]="'primary'" nbButton outline>Save Token</button>
+  </div>
+</form>
+<br/>

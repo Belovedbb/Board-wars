@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-md-12">
+    <form formGroupName="child">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="colors">
+            <div class="item text-heading">
+              <div class="color bg-heading"></div>
+              <div>
+                <h5 class="text-heading">Github Auth</h5>
+                Sign-Up Using Github Service
+              </div>
+            </div>
+          </div>
+          <br/>
+          <nb-alert>
+            <strong>Note!</strong>
+            Requires
+            <li>Email Access</li>
+            <li>Github Organization Access</li>
+          </nb-alert>
+        </div>
+        <div class="col-sm-6">
+          <div class="colors">
+            <div class="item text-heading">
+              <div class="color bg-heading"></div>
+              <div>
+                <h5 class="text-heading">Local Auth</h5>
+                Sign-Up Using Local Service
+              </div>
+            </div>
+          </div>
+          <br/>
+          <nb-alert>
+            <strong>Note!</strong>
+            Not Available
+          </nb-alert>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="buttons-row">
+            <button (click)="openGithubOrgRegister()" [disabled]="disableSubmit"
+                    [status]="'primary'" nbButton outline>Github</button>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="buttons-row">
+            <button type="submit" [disabled]="true" [status]="'primary'" nbButton >Local</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<br/>

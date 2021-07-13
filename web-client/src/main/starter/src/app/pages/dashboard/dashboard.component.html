@@ -1,0 +1,28 @@
+
+<div class="row">
+  <div class="col" *ngFor="let statusCard of statusCards">
+    <ngx-status-card (click)="loadButtonPage(statusCard)" [title]="statusCard.title" [type]="statusCard.type" [sList]="status" [index]="statusCard.index">
+      <i [ngClass]="statusCard.iconClass"></i>
+    </ngx-status-card>
+  </div>
+</div>
+
+<div class="stat-thin row">
+  <div class="col-xxxl-4 col-xxl-5 col-lg-6 col-md-7">
+    <span class="caption">{{status != null && status.length > 0 ? status[historyType.valueOf()].title : ''}} Selected - {{canShow ? 'Enable' : 'Disable'}}</span>
+  </div>
+  <div class="col-xxxl-8 col-xxl-7 col-lg-6 col-md-5">
+    <span class="caption">Activity Frequency</span>
+  </div>
+</div>
+
+<div class="infinite-cards  row">
+  <div class="col-xxxl-4 col-xxl-5 col-lg-6 col-md-7">
+    <dashboard-history [canShow]="canShow" [historyType]="historyType"></dashboard-history>
+  </div>
+
+  <div class="col-xxxl-8 col-xxl-7 col-lg-6 col-md-5">
+    <dashboard-activity-frequency></dashboard-activity-frequency>
+  </div>
+
+</div>
