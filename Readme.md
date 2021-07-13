@@ -20,14 +20,14 @@
   <p align="center">  
     A Project Management Tool with a focus on Agile Methodologies, Tracking and Detailed Output.   
     <br />  
-    <a href="https://github.com/belovedbb/Board-Wars"><strong>🌐 Explore the docs »</strong></a>  
+    <a href="https://github.com/belovedbb/Board-wars"><strong>🌐 Explore the docs »</strong></a>  
     <br />  
     <br />  
     <a href="assets/Showcase-frontend.md">View Demo</a>  
     ·  
-    <a href="https://github.com/belovedbb/Board-Wars/issues">Report Bug</a>  
+    <a href="https://github.com/belovedbb/Board-wars/issues">Report Bug</a>  
     ·  
-    <a href="https://github.com/belovedbb/Board-Wars/issues">Request Feature</a>  
+    <a href="https://github.com/belovedbb/Board-wars/issues">Request Feature</a>  
   </p>  
 </p>  
     
@@ -135,7 +135,7 @@ _Refer to the [Documentation](https://example.com) for insights about the projec
 <!-- ROADMAP -->  
 ## 🌏Roadmap  
   
-See the [open issues](https://github.com/belovedbb/Board-Wars/issues) for a list of proposed features (and known issues).  
+See the [open issues](https://github.com/belovedbb/Board-wars/issues) for a list of proposed features (and known issues).  
   
   
   
@@ -163,7 +163,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 * [Twitter](https://twitter.com/beloved_johnny)  
 * [Linkedin](https://www.linkedin.com/in/ayooluwa-beloved-65710419a)
 * [Mail](mailto:belovedbb1@gmail.com)  
-* [BoardWars](https://github.com/belovedbb/Board-Wars)  
+* [BoardWars](https://github.com/belovedbb/Board-wars)  
   
   
 <!-- ACKNOWLEDGEMENTS -->  
