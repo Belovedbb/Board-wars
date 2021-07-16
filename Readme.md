@@ -20,7 +20,7 @@
   <p align="center">  
     A Project Management Tool with a focus on Agile Methodologies, Tracking and Detailed Output.   
     <br />  
-    <a href="https://github.com/belovedbb/Board-wars"><strong>🌐 Explore the docs »</strong></a>  
+    <a href="https://belovedbb.github.io/board-wars-docs/"><strong>🌐 Explore the docs »</strong></a>  
     <br />  
     <br />  
     <a href="assets/Showcase-frontend.md">View Demo</a>  
