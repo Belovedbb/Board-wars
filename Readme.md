@@ -4,7 +4,9 @@
   <a href="https://github.com/belovedbb/BoardWars" title="Board Wars">    
     <img src="assets/main.png" width="50%"  alt="Board Wars"/>   
   </a>    
-</p>    
+</p>
+<img width="3356" height="1700" alt="image" src="https://github.com/user-attachments/assets/939a6f94-d655-489a-835c-22bc1e101e8f" />
+
 <h1 align="center">🌟 Board Wars 🌟</h1>    
     
 <p align="center">
